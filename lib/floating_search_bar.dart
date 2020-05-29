@@ -14,6 +14,7 @@ class FloatingSearchBar extends StatelessWidget {
     this.onChanged,
     this.title,
     this.decoration,
+    this.scrollController,
     this.onTap,
     @required List<Widget> children,
   }) : _childDelagate = SliverChildListDelegate(
@@ -31,6 +32,7 @@ class FloatingSearchBar extends StatelessWidget {
     this.title,
     this.onTap,
     this.decoration,
+    this.scrollController,
     @required IndexedWidgetBuilder itemBuilder,
     @required int itemCount,
   }) : _childDelagate = SliverChildBuilderDelegate(
@@ -53,12 +55,15 @@ class FloatingSearchBar extends StatelessWidget {
   /// Override the search field
   final Widget title;
 
+  final ScrollController scrollController;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: drawer,
       endDrawer: endDrawer,
       body: CustomScrollView(
+        controller: scrollController,
         slivers: <Widget>[
           SliverFloatingBar(
             leading: leading,
